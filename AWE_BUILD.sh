@@ -1,6 +1,6 @@
 #!/bin/sh
 
-
+set -x
 
 export SERVERLOG=~/awe-server.log
 export CLIENTLOG=~/awe-client.log
