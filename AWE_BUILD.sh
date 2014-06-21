@@ -2,8 +2,8 @@
 
 
 
-export SERVER-LOG=~/awe-server.log
-export CLIENT-LOG=~/awe-client.log
+export SERVERLOG=~/awe-server.log
+export CLIENTLOG=~/awe-client.log
 
 GOPATH=~/gopath
 
@@ -37,12 +37,12 @@ echo "####### go install AWE #######"
 go install -v github.com/MG-RAST/AWE/...
 
 
-$GOPATH/bin/awe-server -debug 1 -conf ./awe-server.cfg 2>&1 > ${SERVER-LOG} &
+$GOPATH/bin/awe-server -debug 1 -conf ./awe-server.cfg 2>&1 > ${SERVERLOG} &
 sleep 3
-$GOPATH/bin/awe-client -debug 1 -conf ./awe-client.cfg 2>&1 > ${CLIENT-LOG} &
+$GOPATH/bin/awe-client -debug 1 -conf ./awe-client.cfg 2>&1 > ${CLIENTLOG} &
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@testjob.json http://localhost:8001/job | json_xs
 
 multitail ~/data/data/awe/logs/client-default_client/*
 
-echo ${SERVER-LOG} ${CLIENT-LOG}
+echo ${SERVERLOG} ${CLIENTLOG}
