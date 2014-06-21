@@ -3,7 +3,7 @@
 set -x
 
 
-CURRENT=${PWD##*/}
+CURRENT=`pwd`
 
 export SERVERLOG=$HOME/awe-server.log
 export CLIENTLOG=$HOME/awe-client.log
