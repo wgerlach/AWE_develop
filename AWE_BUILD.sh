@@ -11,8 +11,8 @@ export CLIENTLOG=$HOME/awe-client.log
 
 GOPATH=~/gopath
 
-sudo killall awe-client
-sudo killall awe-server
+killall -s 9 awe-client
+killall -s 9 awe-server
 
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
