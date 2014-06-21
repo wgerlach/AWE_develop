@@ -1,8 +1,9 @@
 #!/bin/sh
 
 
-SERVER-LOG=~/awe-server.log
-CLIENT-LOG=~/awe-client.log
+
+export SERVER-LOG=~/awe-server.log
+export CLIENT-LOG=~/awe-client.log
 
 GOPATH=~/gopath
 
