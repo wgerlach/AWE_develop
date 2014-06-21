@@ -1,5 +1,9 @@
 #!/bin/sh
 
+
+SERVER-LOG=~/awe-server.log
+CLIENT-LOG=~/awe-client.log
+
 GOPATH=~/gopath
 
 sudo killall awe-client
@@ -32,10 +36,12 @@ echo "####### go install AWE #######"
 go install -v github.com/MG-RAST/AWE/...
 
 
-$GOPATH/bin/awe-server -debug 1 -conf ~/gopath/src/github.com/MG-RAST/AWE/templates/awes.cfg.template 2>&1 > ~/server.log &
+$GOPATH/bin/awe-server -debug 1 -conf ./awe-server.cfg 2>&1 > ${SERVER-LOG} &
 sleep 3
-$GOPATH/bin/awe-client -debug 1 -conf ~/awec.cfg 2>&1 > ~/client.log &
+$GOPATH/bin/awe-client -debug 1 -conf ./awe-client.cfg 2>&1 > ${CLIENT-LOG} &
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@/home/ubuntu/testjob.json http://localhost:8001/job | json_xs
 
 multitail ~/data/data/awe/logs/client-default_client/*
+
+echo ${SERVER-LOG} ${CLIENT-LOG}
