@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-set -e
+
 
 
 CURRENT=`pwd`
@@ -13,6 +13,8 @@ GOPATH=~/gopath
 
 killall -s 9 awe-client
 killall -s 9 awe-server
+
+set -e
 
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
