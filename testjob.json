@@ -1,0 +1,32 @@
+{
+   "info" : {
+      "clientgroups" : "default_group",
+      "noretry" : true,
+      "project" : "simple-autogen-prj",
+      "name" : "simple-autogen-name",
+      "user" : "awe_user",
+      "pipeline" : "simple-autogen"
+   },
+   "tasks" : [
+      {
+         "cmd" : {
+	    "Dockerimage" : "testimage",
+            "args" : "-h",
+            "name" : "bowtie2",
+            "description" : "single_task"
+         },
+         "outputs" : {
+            "awe_stderr.txt" : {
+               "host" : "http://shock.metagenomics.anl.gov:80"
+            },
+            "awe_stdout.txt" : {
+               "host" : "http://shock.metagenomics.anl.gov:80"
+            }
+         },
+         "taskid" : "0",
+         "totalwork" : 1,
+         "inputs" : {}
+      }
+   ]
+}
+
