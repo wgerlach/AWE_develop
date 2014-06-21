@@ -5,8 +5,8 @@ set -x
 
 CURRENT=${PWD##*/}
 
-export SERVERLOG=~/awe-server.log
-export CLIENTLOG=~/awe-client.log
+export SERVERLOG=$HOME/awe-server.log
+export CLIENTLOG=$HOME/awe-client.log
 
 GOPATH=~/gopath
 
