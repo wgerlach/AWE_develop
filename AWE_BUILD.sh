@@ -14,6 +14,7 @@ sudo killall awe-client
 sudo killall awe-server
 
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
+rm -f ${SERVERLOG} ${CLIENTLOG}
 rm -f ~/data/data/awe/logs/client-default_client/*
 rm -f ~/data/awe/logs/server/*
 
