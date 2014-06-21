@@ -40,7 +40,7 @@ $GOPATH/bin/awe-server -debug 1 -conf ./awe-server.cfg 2>&1 > ${SERVER-LOG} &
 sleep 3
 $GOPATH/bin/awe-client -debug 1 -conf ./awe-client.cfg 2>&1 > ${CLIENT-LOG} &
 sleep 2
-curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@/home/ubuntu/testjob.json http://localhost:8001/job | json_xs
+curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@testjob.json http://localhost:8001/job | json_xs
 
 multitail ~/data/data/awe/logs/client-default_client/*
 
