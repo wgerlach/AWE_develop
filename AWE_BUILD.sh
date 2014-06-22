@@ -19,8 +19,7 @@ set -e
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
 rm -f ~/data/data/awe/logs/client-default_client/*
-rm -f ~/data/awe/logs/server/*
-/mnt/data/awe/logs/server/*
+rm -f ~/data/data/awe/logs/server/*
 
 cd $GOPATH/src/github.com/MG-RAST/AWE/
 git pull
