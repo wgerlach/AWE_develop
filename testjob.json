@@ -12,7 +12,7 @@
          "cmd" : {
 	    "Dockerimage" : "testimage",
             "args" : "-h",
-            "name" : "bowtie2",
+            "name" : "app:QIIME.pick_closed_reference_otus.default",
             "description" : "single_task"
          },
          "outputs" : {
