@@ -50,6 +50,6 @@ $GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2>&1 > ${CLIENTL
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_xs
 sleep 2
-multitail ~/data/data/awe/logs/client-default_client/* ${CLIENTLOG}
+multitail ~/data/data/awe/logs/client-default_client/* ${CLIENTLOG} ~/data/data/awe/logs/server/error.log
 
 
