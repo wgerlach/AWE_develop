@@ -18,10 +18,10 @@
          },
          "outputs" : {
             "awe_stderr.txt" : {
-               "host" : "http://shock.metagenomics.anl.gov:80"
+               "host" : "http://140.221.84.112:8080"
             },
             "awe_stdout.txt" : {
-               "host" : "http://shock.metagenomics.anl.gov:80"
+               "host" : "http://140.221.84.112:8080"
             }
          },
          "taskid" : "0",
