@@ -16,6 +16,9 @@ killall -s 9 awe-server
 
 set -e
 
+# clean database
+mongo AWEDB --eval "db.dropDatabase()"
+
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
 rm -f ~/data/data/awe/logs/client-default_client/*
