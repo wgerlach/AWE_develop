@@ -11,11 +11,19 @@
       {
          "cmd" : {
 	    "Dockerimage" : "testimage",
-            
             "name" : "app:QIIME.pick_closed_reference_otus.default",
             "args" : "input.fas, param.txt, IDENTITY=90",
             "description" : "single_task"
          },
+	"inputs": {
+		"input.fas" : {
+			"host" : "http://140.221.84.112:8080",
+			"node" : "d475689e-6d6e-4c32-9d64-6461d55871da"
+ 		},
+		"param.txt" : {
+			"host" : "http://140.221.84.112:8080",
+			"node" : "4d5c26c4-5e7d-497c-8e46-c6053861aa88"
+		}
          "outputs" : {
             "awe_stderr.txt" : {
                "host" : "http://140.221.84.112:8080"
