@@ -2,27 +2,32 @@
 
 set -x
 
-
+#dockerized invocation?
+#sudo docker.io run -t -i --name awe_develop -v /home/ubuntu/AWE_develop:/AWE_develop ubuntu:14.04 /bin/bash
+# install go
+# install AWE
 
 CURRENT=`pwd`
 
-export SERVERLOG=$HOME/awe-server.log
-export CLIENTLOG=$HOME/awe-client.log
+export SERVERLOG=${CURRENT}/awe-server.log
+export CLIENTLOG=${CURRENT}/awe-client.log
 
 GOPATH=~/gopath
 
 killall -s 9 awe-client
 killall -s 9 awe-server
 
-set -e
+
 
 # clean database
 mongo AWEDB --eval "db.dropDatabase()"
 
+set -e
+
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
-rm -f ~/data/data/awe/logs/client-default_client/*
-rm -f ~/data/data/awe/logs/server/*
+rm -f /mnt/data/awe/logs/client-default_client/*
+rm -f /mnt/data/awe/logs/server/*
 
 cd $GOPATH/src/github.com/MG-RAST/AWE/
 git pull
