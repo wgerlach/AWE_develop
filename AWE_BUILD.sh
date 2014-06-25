@@ -20,6 +20,10 @@ set -x
 
 CURRENT=`pwd`
 
+
+#AWEDIR="/home/ubuntu/data/data/awe"
+AWEDIR="/mnt/data/awe"
+
 export SERVERLOG=${CURRENT}/awe-server.log
 export CLIENTLOG=${CURRENT}/awe-client.log
 
@@ -37,8 +41,8 @@ set -e
 
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
-rm -f /mnt/data/awe/logs/client-default_client/*
-rm -f /mnt/data/awe/logs/server/*
+rm -f ${AWEDIR}/logs/client-default_client/*
+rm -f ${AWEDIR}/logs/server/*
 
 cd $GOPATH/src/github.com/MG-RAST/AWE/
 git pull
@@ -69,7 +73,7 @@ $GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2>&1 > ${CLIENTL
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_pp
 sleep 2
-multitail -rc 3 -l "curl -X GET -s http://localhost:8001/job | json_pp | grep \"state\|notes\"" ~/data/data/awe/logs/client-default_client/* ${CLIENTLOG} ~/data/data/awe/logs/server/error.log
+multitail -rc 3 -l "curl -X GET -s http://localhost:8001/job | json_pp | grep \"state\|notes\"" ${AWEDIR}/logs/client-default_client/* ${CLIENTLOG} ${AWEDIR}/logs/server/error.log
 
 
 #curl -X GET http://localhost:8001/job | json_xs  | less
