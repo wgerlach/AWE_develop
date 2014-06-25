@@ -3,9 +3,20 @@
 set -x
 
 #dockerized invocation?
-#sudo docker.io run -t -i --name awe_develop -v /home/ubuntu/AWE_develop:/AWE_develop ubuntu:14.04 /bin/bash
-# install go
-# install AWE
+# would require port open for server...
+# sudo docker.io pull ubuntu:14.04
+# sudo ./deploy_software.pl --root --docker --target=/ --base_image=ubuntu:14.04 --tag=awe:1.0 AWE-full
+# #### ( not working )curl "http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download" > awe.tgz ; cat awe.tgz | sudo docker.io import - awe_develop:0.01
+# sudo docker.io run -t -i --name awedevelop -v /home/ubuntu/AWE_develop:/AWE_develop awe:1.0 /bin/bash
+# install missing deps ?
+# checkout development branch of AWE:
+#rm -rf ~/gopath/src/github.com/MG-RAST/AWE/ ; cd ~/gopath/src/github.com/MG-RAST ; git clone https://github.com/wgerlach/AWE.git -b dev-bash
+
+
+#deploy AWE:
+# sudo ./deploy_software.pl --root --new --target /home/ubuntu/ golang
+# ./deploy_software.pl --new --target /home/ubuntu/ AWE
+#rm -rf ~/gopath/src/github.com/MG-RAST/AWE/ ; cd ~/gopath/src/github.com/MG-RAST ; git clone https://github.com/wgerlach/AWE.git -b dev-bash
 
 CURRENT=`pwd`
 
@@ -56,9 +67,9 @@ $GOPATH/bin/awe-server -debug 1 -conf ${CURRENT}/awe-server.cfg 2>&1 > ${SERVERL
 sleep 3
 $GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2>&1 > ${CLIENTLOG} &
 sleep 2
-curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_xs
+curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_pp
 sleep 2
-multitail -rc 3 -l "curl -X GET -s http://localhost:8001/job | json_xs | grep \"state\|notes\"" ~/data/data/awe/logs/client-default_client/* ${CLIENTLOG} ~/data/data/awe/logs/server/error.log
+multitail -rc 3 -l "curl -X GET -s http://localhost:8001/job | json_pp | grep \"state\|notes\"" ~/data/data/awe/logs/client-default_client/* ${CLIENTLOG} ~/data/data/awe/logs/server/error.log
 
 
 #curl -X GET http://localhost:8001/job | json_xs  | less
