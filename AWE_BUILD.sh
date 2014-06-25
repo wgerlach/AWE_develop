@@ -18,6 +18,11 @@ set -x
 # ./deploy_software.pl --new --target /home/ubuntu/ AWE
 #rm -rf ~/gopath/src/github.com/MG-RAST/AWE/ ; cd ~/gopath/src/github.com/MG-RAST ; git clone https://github.com/wgerlach/AWE.git -b dev-bash
 
+# AWE-client needs to talk to docker socket
+#sudo groupadd docker
+#sudo gpasswd -a ${USER} docker
+#sudo restart docker.io
+
 CURRENT=`pwd`
 
 
