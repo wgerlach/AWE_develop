@@ -21,7 +21,7 @@
 			"node" : "deae84ae-d91d-46ce-a3f1-cc37d07e942f"
  		},
 		"otu_picking_params_97.txt" : {
-			"host" : "http://shock.metagenomics.anl.gov80",
+			"host" : "http://shock.metagenomics.anl.gov:80",
 			"node" : "97118250-45d1-4e5a-a094-d02c5229377f"
 		}
 	},
