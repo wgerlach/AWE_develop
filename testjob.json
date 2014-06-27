@@ -17,20 +17,20 @@
          },
 	"inputs": {
 		"input.fas" : {
-			"host" : "http://140.221.84.112:8080",
-			"node" : "d475689e-6d6e-4c32-9d64-6461d55871da"
+			"host" : "http://shock.metagenomics.anl.gov:8080",
+			"node" : "deae84ae-d91d-46ce-a3f1-cc37d07e942f"
  		},
-		"param.txt" : {
-			"host" : "http://140.221.84.112:8080",
-			"node" : "4d5c26c4-5e7d-497c-8e46-c6053861aa88"
+		"otu_picking_params_97.txt" : {
+			"host" : "http://shock.metagenomics.anl.gov8080",
+			"node" : "97118250-45d1-4e5a-a094-d02c5229377f"
 		}
 	},
          "outputs" : {
             "awe_stderr.txt" : {
-               "host" : "http://140.221.84.112:8080"
+               "host" : "http://shock.metagenomics.anl.gov:8080"
             },
             "awe_stdout.txt" : {
-               "host" : "http://140.221.84.112:8080"
+               "host" : "http://shock.metagenomics.anl.gov:8080"
             }
          },
          "taskid" : "0",

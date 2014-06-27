@@ -18,10 +18,17 @@ set -x
 # ./deploy_software.pl --new --target /home/ubuntu/ AWE
 #rm -rf ~/gopath/src/github.com/MG-RAST/AWE/ ; cd ~/gopath/src/github.com/MG-RAST ; git clone https://github.com/wgerlach/AWE.git -b dev-bash
 
+#sudo apt-get install multitail
+
 # AWE-client needs to talk to docker socket
 #sudo groupadd docker
 #sudo gpasswd -a ${USER} docker
 #sudo restart docker.io
+
+
+# test 16S data set (illumina public) http://metagenomics.anl.gov/metagenomics.cgi?page=DownloadMetagenome&metagenome=4457770.3
+# find data set ./shockclient.pl --debug --query id=mgm4457770.3,stage_name=preprocess,data_type=passed
+# http://shock.metagenomics.anl.gov:80 deae84ae-d91d-46ce-a3f1-cc37d07e942f
 
 CURRENT=`pwd`
 
