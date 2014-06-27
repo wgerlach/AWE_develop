@@ -12,7 +12,7 @@
          "cmd" : {
 	    "Dockerimage" : "testimage",
             "name" : "app:QIIME.pick_closed_reference_otus.default",
-            "args" : "input.fas, param.txt, IDENTITY=97",
+            "args" : "input.fas, otu_picking_params_97.txt, IDENTITY=97",
             "description" : "single_task"
          },
 	"inputs": {
