@@ -10,28 +10,13 @@
    "tasks" : [
       {
          "cmd" : {
-	    "Dockerimage" : "testimage",
             "name" : "app:QIIME.pick_closed_reference_otus.default",
-            "args" : "input.fas, otu_picking_params_97.txt, IDENTITY=97",
+            "deprectaed_args" : "shock:http://shock.metagenomics.anl.gov:80 input.fas, otu_picking_params_97.txt, IDENTITY=97",
+	    "app_args" : [ 	{"resource" : "shock", "host":"shock.metagenomics.anl.gov:80", "node":"deae84ae-d91d-46ce-a3f1-cc37d07e942f", "filename":"input.fas"},
+				{"resource" : "shock", "host":"shock.metagenomics.anl.gov:80", "node":"97118250-45d1-4e5a-a094-d02c5229377f", "filename":"otu_picking_params_97.txt"},
+				{"resource" : "string", "key" : "IDENTITY", "value : "97"}
+			 ]
             "description" : "single_task"
-         },
-	"inputs": {
-		"input.fas" : {
-			"host" : "http://shock.metagenomics.anl.gov:80",
-			"node" : "deae84ae-d91d-46ce-a3f1-cc37d07e942f"
- 		},
-		"otu_picking_params_97.txt" : {
-			"host" : "http://shock.metagenomics.anl.gov:80",
-			"node" : "97118250-45d1-4e5a-a094-d02c5229377f"
-		}
-	},
-         "outputs" : {
-            "awe_stderr.txt" : {
-               "host" : "http://shock.metagenomics.anl.gov:80"
-            },
-            "awe_stdout.txt" : {
-               "host" : "http://shock.metagenomics.anl.gov:80"
-            }
          },
          "taskid" : "0",
          "totalwork" : 1,
