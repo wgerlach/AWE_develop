@@ -19,8 +19,7 @@
             "description" : "single_task"
          },
          "taskid" : "0",
-         "totalwork" : 1,
-         "inputs" : {}
+         "totalwork" : 1
       }
    ]
 }
