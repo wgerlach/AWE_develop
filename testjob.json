@@ -1,35 +1,43 @@
 {
-   "info" : {
-      "clientgroups" : "default_group",
-      "noretry" : true,
-      "project" : "simple-autogen-prj",
-      "name" : "simple-autogen-name",
-      "user" : "awe_user",
-      "pipeline" : "simple-autogen"
+	"info" : {
+		"clientgroups" : "default_group",
+        "noretry" : true,
+        "project" : "simple-autogen-prj",
+        "name" : "simple-autogen-name",
+        "user" : "awe_user",
+        "pipeline" : "simple-autogen"
    },
    
    "tasks" : [
-      {
-         "cmd" : {
-            "name" : "app:QIIME.pick_closed_reference_otus.default",
-            "deprectaed_args" : "shock:http://shock.metagenomics.anl.gov:80 input.fas, otu_picking_params_97.txt, IDENTITY=97",
-	    "app_args" : [ 	{"resource":"shock", 
-					"host" : "http://shock.metagenomics.anl.gov:80",
-					"node" : "deae84ae-d91d-46ce-a3f1-cc37d07e942f",
-					"filename" : "input.fas"},
-				{"resource" : "shock",
-					"host" : "http://shock.metagenomics.anl.gov:80",
-					"node" : "97118250-45d1-4e5a-a094-d02c5229377f",
-					"filename" : "otu_picking_params_97.txt"},
-				{"resource" : "string",
-					"key" : "IDENTITY",
-					"value" : "97"}
-			 ],
-            "description" : "single_task"
-         },
-         "taskid" : "0",
-         "totalwork" : 1
-      }
+		{
+		"taskid" : "0",
+			"cmd" : {
+				"name" : "app:QIIME.pick_closed_reference_otus.default",
+				"app_args" : [
+					{"resource":"shock",
+						"host" : "http://shock.metagenomics.anl.gov:80",
+						"node" : "deae84ae-d91d-46ce-a3f1-cc37d07e942f",
+						"filename" : "input.fas"},
+					{"resource" : "shock",
+						"host" : "http://shock.metagenomics.anl.gov:80",
+						"node" : "97118250-45d1-4e5a-a094-d02c5229377f",
+						"filename" : "otu_picking_params_97.txt"},
+					{"resource" : "string",
+						"key" : "IDENTITY",
+						"value" : "97"}
+				 ]
+			 }
+		},
+    	{
+		"taskid" : "1",
+		"cmd" : {
+			"name" : "app: PIRCUSt.normalize_by_copy_number.default",
+			"app_args" : [
+				{"resource":"task",
+					"task" : "0",
+					"position" : "0"}
+			]
+		}
    ],
    "shockhost" : "http://shock.metagenomics.anl.gov:80"
 }
