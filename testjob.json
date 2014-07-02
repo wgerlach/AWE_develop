@@ -34,7 +34,7 @@
 				"app_args" : [
 					{"resource":"task",
 						"task" : "0",
-						"position" : "0"}
+						"position" : 0}
 				]
 			}
 		}
