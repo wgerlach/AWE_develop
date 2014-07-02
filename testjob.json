@@ -30,7 +30,7 @@
     	{
 			"taskid" : "1",
 			"cmd" : {
-				"name" : "app: PIRCUSt.normalize_by_copy_number.default",
+				"name" : "app:PIRCUSt.normalize_by_copy_number.default",
 				"app_args" : [
 					{"resource":"task",
 						"task" : "0",
