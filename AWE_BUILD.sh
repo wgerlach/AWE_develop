@@ -79,9 +79,9 @@ echo "####### go install AWE #######"
 go install -v github.com/MG-RAST/AWE/...
 
 
-$GOPATH/bin/awe-server -debug 1 -conf ${CURRENT}/awe-server.cfg 2>&1 > ${SERVERLOG} &
+$GOPATH/bin/awe-server -debug 1 -conf ${CURRENT}/awe-server.cfg 2> ${AWEDIR}/logs/server/stderr.log 1> ${AWEDIR}/logs/server/stdout.log &
 sleep 3
-$GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2>&1 > ${CLIENTLOG} &
+$GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2> ${AWEDIR}/logs/client-default_client/stderr.log 1> ${AWEDIR}/logs/client-default_client/stdout.log &
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_pp
 sleep 2
