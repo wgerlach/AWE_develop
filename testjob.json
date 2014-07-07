@@ -44,7 +44,7 @@
 				"name" : "app:PIRCUSt.predict_metagenomes.default",
 				"app_args" : [
 					{"resource":"task",
-						"task" : "2",
+						"task" : "1",
 						"position" : 0}
 				]
 			}
