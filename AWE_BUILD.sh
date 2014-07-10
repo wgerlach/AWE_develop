@@ -53,8 +53,10 @@ set -e
 
 rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
-rm -f ${AWEDIR}/logs/client-default_client/*
+rm -f ${AWEDIR}/logs/client/*
 rm -f ${AWEDIR}/logs/server/*
+
+mkdir -p ${AWEDIR}/logs/server ${AWEDIR}/logs/client
 
 cd $GOPATH/src/github.com/MG-RAST/AWE/
 git pull
@@ -81,7 +83,7 @@ go install -v github.com/MG-RAST/AWE/...
 
 $GOPATH/bin/awe-server -debug 1 -conf ${CURRENT}/awe-server.cfg 2> ${AWEDIR}/logs/server/stderr.log 1> ${AWEDIR}/logs/server/stdout.log &
 sleep 3
-$GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2> ${AWEDIR}/logs/client-default_client/stderr.log 1> ${AWEDIR}/logs/client-default_client/stdout.log &
+$GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2> ${AWEDIR}/logs/client/stderr.log 1> ${AWEDIR}/logs/client/stdout.log &
 sleep 2
 curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_pp
 sleep 2
