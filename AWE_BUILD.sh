@@ -85,7 +85,7 @@ $GOPATH/bin/awe-server -debug 1 -conf ${CURRENT}/awe-server.cfg 2> ${AWEDIR}/log
 sleep 3
 $GOPATH/bin/awe-client -debug 1 -conf ${CURRENT}/awe-client.cfg 2> ${AWEDIR}/logs/client/stderr.log 1> ${AWEDIR}/logs/client/stdout.log &
 sleep 2
-curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/testjob.json http://localhost:8001/job | json_pp
+curl -X POST -H "Datatoken: $GLOBUSONLINE"  -F upload=@${CURRENT}/picrust.json http://localhost:8001/job | json_pp
 sleep 2
 multitail -rc 3 -l "curl -X GET -s http://localhost:8001/job | json_pp | grep \"state\|notes\"" ${AWEDIR}/logs/client-default_client/* ${AWEDIR}/logs/server/*.log
 
