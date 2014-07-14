@@ -1,0 +1,30 @@
+{
+	"info" : {
+	"clientgroups" : "docker",
+        "noretry" : true,
+        "project" : "picrust_test",
+        "name" : "emirge",
+        "user" : "awe_user",
+        "pipeline" : "emirge"
+   },
+   "tasks" : [
+		{
+			"taskid" : "0",
+			"cmd" : {
+				"name" : "app:Emirge.emirge.default",
+				"app_args" : [
+					{"resource":"shock",
+						"host" : "http://shock.metagenomics.anl.gov:80",
+						"node" : "",
+						"filename" : "input1.fastq"},
+					{"resource" : "shock",
+						"host" : "http://shock.metagenomics.anl.gov:80",
+						"node" : "",
+						"filename" : "input2.fastq"}
+				 ]
+			 }
+		}
+   ],
+   "shockhost" : "http://shock.metagenomics.anl.gov:80"
+}
+
