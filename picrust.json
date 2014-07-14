@@ -1,11 +1,11 @@
 {
 	"info" : {
-		"clientgroups" : "default_group",
+	"clientgroups" : "docker",
         "noretry" : true,
-        "project" : "simple-autogen-prj",
-        "name" : "simple-autogen-name",
+        "project" : "picrust_test",
+        "name" : "picrust",
         "user" : "awe_user",
-        "pipeline" : "simple-autogen"
+        "pipeline" : "picrust"
    },
    "tasks" : [
 		{
