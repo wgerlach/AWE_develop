@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-
+set -e
 
 #echo "####### go fmt AWE     #######"
 go fmt github.com/MG-RAST/AWE/...
