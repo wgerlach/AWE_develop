@@ -13,14 +13,9 @@
 			"cmd" : {
 				"name" : "app:Emirge.emirge.default",
 				"app_args" : [
-					{"resource":"shock",
-						"host" : "http://shock.metagenomics.anl.gov:80",
-						"node" : "",
-						"filename" : "input1.fastq"},
-					{"resource" : "shock",
-						"host" : "http://shock.metagenomics.anl.gov:80",
-						"node" : "",
-						"filename" : "input2.fastq"}
+					{"resource":"url",
+						"url" : "http://api.metagenomics.anl.gov/1/download/mgm4477899.3?file=050.1",
+						"filename" : "input1.fastq"}
 				 ]
 			 }
 		}
