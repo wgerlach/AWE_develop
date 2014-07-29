@@ -2,17 +2,6 @@
 
 set -x
 
-#dockerized invocation?
-# would require port open for server...
-# sudo docker.io pull ubuntu:14.04
-# sudo ./deploy_software.pl --root --docker --target=/ --base_image=ubuntu:14.04 --tag=awe:1.0 AWE-full
-# #### ( not working )curl "http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download" > awe.tgz ; cat awe.tgz | sudo docker.io import - awe_develop:0.01
-# sudo docker.io run -t -i --name awedevelop -v /home/ubuntu/AWE_develop:/AWE_develop awe:1.0 /bin/bash
-# install missing deps ?
-# checkout development branch of AWE:
-#rm -rf ~/gopath/src/github.com/MG-RAST/AWE/ ; cd ~/gopath/src/github.com/MG-RAST ; git clone https://github.com/wgerlach/AWE.git -b dev-bash
-
-
 #deploy AWE:
 # sudo ./deploy_software.pl --root --new --target /home/ubuntu/ golang
 # ./deploy_software.pl --new --target /home/ubuntu/ AWE
@@ -51,7 +40,7 @@ mongo AWEDB --eval "db.dropDatabase()"
 
 set -e
 
-rm -rf $GOPATH/bin/awe-server $GOPATH/bin/awe-client
+rm -f $GOPATH/bin/awe-server $GOPATH/bin/awe-client
 rm -f ${SERVERLOG} ${CLIENTLOG}
 rm -f ${AWEDIR}/logs/client/*
 rm -f ${AWEDIR}/logs/server/*
