@@ -7,8 +7,8 @@ sudo start docker.io ; echo starting docker
 curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
 sudo docker load -i awe.tgz
 mkdir -p /mnt/data/awe/logs
-mkdir ~/awe-config
-cd ~/awe-config
+mkdir -p /home/ubuntu/awe-config
+cd /home/ubuntu/awe-config
 wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
 sudo docker.io run -t -i --name awe-client \
