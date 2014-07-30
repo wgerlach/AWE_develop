@@ -4,18 +4,19 @@ set -x
 
 sudo start docker.io ; echo starting docker 
 
-set -e
 
 
 curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
 sudo docker load -i awe.tgz
 
-sudo docker rm awe-client ; echo removing old container
+sudo docker rm -f awe-client ; echo removing old container
+
+set -e
 
 mkdir -p /mnt/data/awe/logs
 mkdir -p /home/ubuntu/awe-config
 cd /home/ubuntu/awe-config
-wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
+rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
 sudo docker.io run -t -i --name awe-client \
 -v /var/run/docker.sock:/var/run/docker.sock \
