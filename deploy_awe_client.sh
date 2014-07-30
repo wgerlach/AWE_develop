@@ -2,6 +2,8 @@
 set -e
 set -x
 
+sudo start docker.io ; echo starting docker 
+
 curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
 sudo docker load -i awe.tgz
 mkdir -p /mnt/data/awe/logs
@@ -29,6 +31,7 @@ cd && \
 go install -v github.com/MG-RAST/AWE/... && \
 /home/gopath/bin/awe-client -debug 2 \
  -server_url=http://10.1.12.14:8001 \
+ -client_group=docker \
  -conf /awe-config/awe-client.cfg \
  -cgroup_memory_docker_dir=/cgroup_memory_docker/"
 
