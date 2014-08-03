@@ -16,7 +16,10 @@
 					{"resource":"url",
 						"url" : "http://api.metagenomics.anl.gov/1/download/mgm4477899.3?file=050.1",
 						"filename" : "input1.fastq",
-						"uncompress" : "gzip"}
+						"uncompress" : "gzip"},
+					{"resource" : "string",
+						"key" : "processors",
+						"value" : "8"}
 				 ]
 			 }
 		}
