@@ -29,11 +29,10 @@ mkdir -p /awe/logs/ && \
 rm -f /awe/logs/* && \
 rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
-rm -rf AWE golib && \
+rm -rf AWE golib go-dockerclient && \
 git clone https://github.com/wgerlach/AWE.git && \
 git clone https://github.com/MG-RAST/golib.git && \
-cd /home/gopath/src/github.com/wgerlach/go-dockerclient && \
-git pull && \
+git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
 go install -v github.com/MG-RAST/AWE/... && \
 /home/gopath/bin/awe-client -debug 2 \
