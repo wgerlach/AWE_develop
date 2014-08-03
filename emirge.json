@@ -19,7 +19,8 @@
 						"uncompress" : "gzip"},
 					{"resource" : "string",
 						"key" : "processors",
-						"value" : "8"}
+						"value" : "${NumCPU}",
+						"_comment" : "emirge/bowtie do not use the maximal number of cpus by default"}
 				 ]
 			 }
 		}
