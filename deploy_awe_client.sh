@@ -13,8 +13,12 @@ sudo docker rm -f awe-client ; echo removing old container
 
 set -e
 
+rm -rf /mnt/data/awe/logs
+rm -rf /mnt/data/awe/work/*
 mkdir -p /mnt/data/awe/logs
 mkdir -p /home/ubuntu/awe-config
+
+
 cd /home/ubuntu/awe-config
 rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
