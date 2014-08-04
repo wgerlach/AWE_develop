@@ -18,7 +18,7 @@ mkdir -p /home/ubuntu/awe-config
 cd /home/ubuntu/awe-config
 rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
-sudo docker.io run -t -i --name awe-client \
+sudo docker.io run -d -t -i --name awe-client \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /home/ubuntu/awe-config/:/awe-config/ \
 -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
@@ -39,5 +39,6 @@ go install -v github.com/MG-RAST/AWE/... && \
  -server_url=http://10.1.12.14:8001 \
  -client_group=docker \
  -conf /awe-config/awe-client.cfg \
- -cgroup_memory_docker_dir=/cgroup_memory_docker/"
+ -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
+2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
 
