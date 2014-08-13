@@ -20,7 +20,7 @@
 						"uncompress" : "gzip"},
 					{"resource" : "string",
 						"key" : "iterations",
-						"value" : "01"
+						"value" : "00"
 						}
 				 ]
 			 }
