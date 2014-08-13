@@ -19,7 +19,7 @@
 						"filename" : "input1.fastq",
 						"uncompress" : "gzip"},
 					{"resource" : "string",
-						"key" : "iteration",
+						"key" : "iterations",
 						"value" : "01"
 						}
 				 ]
