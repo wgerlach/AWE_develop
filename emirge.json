@@ -19,9 +19,9 @@
 						"filename" : "input1.fastq",
 						"uncompress" : "gzip"},
 					{"resource" : "string",
-						"key" : "processors",
-						"value" : "${NumCPU}",
-						"_comment" : "emirge/bowtie do not use the maximal number of cpus by default"}
+						"key" : "iteration",
+						"value" : "01"
+						}
 				 ]
 			 }
 		}
