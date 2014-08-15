@@ -6,7 +6,9 @@ sudo start docker.io ; echo starting docker
 
 sleep 5
 
-curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
+if ! [ -f awe.tgz ]; then
+  curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
+fi
 sudo docker load -i awe.tgz
 
 sudo docker rm -f awe-client ; echo removing old container
