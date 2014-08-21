@@ -1,8 +1,13 @@
 #!/bin/bash
 
+
+
+export DOCKERBIN=docker
+#export DOCKERBIN=docker.io
+
 set -x
 
-sudo start docker.io ; echo starting docker 
+sudo start $DOCKERBIN ; echo starting $DOCKERBIN 
 
 sleep 5
 
@@ -24,7 +29,7 @@ mkdir -p /home/ubuntu/awe-config
 cd /home/ubuntu/awe-config
 rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
-sudo docker.io run -d -t -i --name awe-client \
+sudo $DOCKERBIN run -d -t -i --name awe-client \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /home/ubuntu/awe-config/:/awe-config/ \
 -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
