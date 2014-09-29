@@ -90,6 +90,7 @@ rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
 git clone https://github.com/wgerlach/AWE.git && \
+cd AWE; git reset --hard dd4147757b ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
