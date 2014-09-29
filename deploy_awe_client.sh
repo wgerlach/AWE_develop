@@ -7,7 +7,7 @@ export SERVERURL=http://10.1.12.14:8001
 
 export DOCKERBIN=docker
 #export DOCKERBIN=docker.io
-export AWE-BINARY=awe-client-20140926-dd4147757b
+export AWE-BINARY="awe-client-20140926-dd4147757b"
 
 
 set -x
