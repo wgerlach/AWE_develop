@@ -7,7 +7,7 @@ export SERVERURL=http://10.1.12.14:8001
 
 export DOCKERBIN=docker
 #export DOCKERBIN=docker.io
-
+export AWE-BINARY=awe-client-20140926-dd4147757b
 
 
 set -x
@@ -18,6 +18,12 @@ if [ $1a == "nodockera" ]
 then
 	echo no docker
 	killall -s TERM awe-client
+
+	if ! [ -f awe-client ]; then
+		curl -O http://dunkirk.mcs.anl.gov/~wgerlach/${AWE-BINARY} > awe.tmp
+		chmod +x awe.tmp
+		mv awe.tmp awe-client
+	fi
 
 else
 
@@ -48,37 +54,37 @@ rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_devel
 if [ $1a == "nodockera" ]
 then
 
-	nohup /home/gopath/bin/awe-client -debug 2 \
-		-server_url=${SERVERURL} \
-		-client_group=nodocker \
-		-conf /awe-config/awe-client.cfg \
-		-cgroup_memory_docker_dir=/cgroup_memory_docker/ \
-		2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log &
+nohup /home/gopath/bin/awe-client -debug 2 \
+ -server_url=${SERVERURL} \
+ -client_group=nodocker \
+ -conf /awe-config/awe-client.cfg \
+ -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
+2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log &
 
 else
 
-	sudo $DOCKERBIN run -d -t -i --name awe-worker \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		-v /home/ubuntu/awe-config/:/awe-config/ \
-		-v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
-		-v /mnt/data/awe/:/mnt/data/awe/ \
-		awe:20140615 \
-		bash -c "\
-		mkdir -p /awe/logs/ && \
-		rm -f /awe/logs/* && \
-		rm -f /home/gopath/bin/awe-client && \
-		cd /home/gopath/src/github.com/MG-RAST/ && \
-		rm -rf AWE golib go-dockerclient && \
-		git clone https://github.com/wgerlach/AWE.git && \
-		git clone https://github.com/MG-RAST/golib.git && \
-		git clone https://github.com/MG-RAST/go-dockerclient.git && \
-		cd && \
-		go install -v github.com/MG-RAST/AWE/... && \
-		/home/gopath/bin/awe-client -debug 2 \
-			 -server_url=${SERVERURL} \
-			 -client_group=docker \
-			 -conf /awe-config/awe-client.cfg \
-			 -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
-			 2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
+sudo $DOCKERBIN run -d -t -i --name awe-worker \
+ -v /var/run/docker.sock:/var/run/docker.sock \
+ -v /home/ubuntu/awe-config/:/awe-config/ \
+ -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
+ -v /mnt/data/awe/:/mnt/data/awe/ \
+awe:20140615 \
+bash -c "\
+mkdir -p /awe/logs/ && \
+rm -f /awe/logs/* && \
+rm -f /home/gopath/bin/awe-client && \
+cd /home/gopath/src/github.com/MG-RAST/ && \
+rm -rf AWE golib go-dockerclient && \
+git clone https://github.com/wgerlach/AWE.git && \
+git clone https://github.com/MG-RAST/golib.git && \
+git clone https://github.com/MG-RAST/go-dockerclient.git && \
+cd && \
+go install -v github.com/MG-RAST/AWE/... && \
+/home/gopath/bin/awe-client -debug 2 \
+ -server_url=${SERVERURL} \
+ -client_group=docker \
+ -conf /awe-config/awe-client.cfg \
+ -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
+ 2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
 
 fi
