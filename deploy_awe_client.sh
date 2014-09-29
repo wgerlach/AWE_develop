@@ -45,7 +45,7 @@ else
 	sleep 5
 
 	if ! [ -f awe.tgz ]; then
-	  curl http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download > awe.tgz
+	  curl "http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download" > awe.tgz
 	fi
 	docker load -i awe.tgz
 
