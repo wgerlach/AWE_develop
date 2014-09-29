@@ -19,7 +19,8 @@ then
 	echo no docker
 	killall -s TERM awe-client
 
-	if ! [ -f awe-client ]; then
+	if ! [ -f /home/ubuntu/awe-client ]; then
+		cd /home/ubuntu/
 		curl -O http://dunkirk.mcs.anl.gov/~wgerlach/${AWE-BINARY} > awe.tmp
 		chmod +x awe.tmp
 		mv awe.tmp awe-client
@@ -54,7 +55,7 @@ rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_devel
 if [ $1a == "nodockera" ]
 then
 
-nohup /home/gopath/bin/awe-client -debug 2 \
+nohup /home/ubuntu/awe-client -debug 2 \
  -server_url=${SERVERURL} \
  -client_group=nodocker \
  -conf /awe-config/awe-client.cfg \
