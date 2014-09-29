@@ -22,6 +22,8 @@ fi
 if [ $1a == "stopa" ]
 then
 	killall -s TERM awe-client
+	docker rm -f awe-worker ; echo removing old container
+	exit 0
 fi
 
 if [ $1a == "nodockera" ]
