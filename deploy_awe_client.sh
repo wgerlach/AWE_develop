@@ -67,6 +67,10 @@ rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_devel
 if [ $1a == "nodockera" ]
 then
 
+export PATH=/root/bin:/root/pipeline/awecmd:/root/pipeline/bin:$PATH
+export PERL5LIB=/root/pipeline/lib:/root/pipeline/conf:$PERL5LIB
+export PATH=/root/FragGeneScan/bin:$PATH
+
 nohup /home/ubuntu/awe-client -debug 2 \
  -server_url=${SERVERURL} \
  -client_group=nodocker \
