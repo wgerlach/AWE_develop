@@ -10,6 +10,9 @@ export DOCKERBIN=docker
 #export AWE_BINARY="awe-client-20140926-dd4147757b"
 export AWE_BINARY="awe-client-20141006-51dd4c1"
 
+export AWE_COMMIT_NUMBER="9cb948f1fb" # for docker
+
+
 set -x
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
@@ -102,7 +105,7 @@ rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
 git clone https://github.com/wgerlach/AWE.git && \
-cd AWE; git reset --hard 51dd4c1 ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
+cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
