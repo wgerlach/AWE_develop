@@ -7,8 +7,8 @@ export SERVERURL=http://10.1.12.14:8001
 
 export DOCKERBIN=docker
 #export DOCKERBIN=docker.io
-export AWE_BINARY="awe-client-20140926-dd4147757b"
-
+#export AWE_BINARY="awe-client-20140926-dd4147757b"
+export AWE_BINARY="awe-client-20141006-51dd4c1"
 
 set -x
 
@@ -22,6 +22,7 @@ fi
 if [ $1a == "stopa" ]
 then
 	killall -s TERM awe-client
+	killall -s TERM ${AWE_BINARY}
 	docker rm -f awe-worker ; echo removing old container
 	exit 0
 fi
@@ -30,12 +31,13 @@ if [ $1a == "nodockera" ]
 then
 	echo no docker
 	killall -s TERM awe-client
+	killall -s TERM ${AWE_BINARY}
 
-	if ! [ -f /home/ubuntu/awe-client ]; then
+	if ! [ -f /home/ubuntu/${AWE_BINARY} ]; then
 		cd /home/ubuntu/
 		curl http://dunkirk.mcs.anl.gov/~wgerlach/${AWE_BINARY} > awe.tmp
 		chmod +x awe.tmp
-		mv awe.tmp awe-client
+		mv awe.tmp ${AWE_BINARY}
 	fi
 
 else
@@ -71,7 +73,7 @@ export PATH=/root/bin:/root/pipeline/awecmd:/root/pipeline/bin:$PATH
 export PERL5LIB=/root/pipeline/lib:/root/pipeline/conf:$PERL5LIB
 export PATH=/root/FragGeneScan/bin:$PATH
 
-nohup /home/ubuntu/awe-client -debug 2 \
+nohup /home/ubuntu/${AWE_BINARY} -debug 2 \
  -server_url=${SERVERURL} \
  -client_group=nodocker \
  -conf /home/ubuntu/awe-config/awe-client.cfg \
@@ -100,7 +102,7 @@ rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
 git clone https://github.com/wgerlach/AWE.git && \
-cd AWE; git reset --hard dd4147757b ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
+cd AWE; git reset --hard 51dd4c1 ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
