@@ -10,7 +10,7 @@ export DOCKERBIN=docker
 #export AWE_BINARY="awe-client-20140926-dd4147757b"
 export AWE_BINARY="awe-client-20141006-51dd4c1"
 
-export AWE_COMMIT_NUMBER="9cb948f1fb" # for docker
+export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
 
 
 set -x
