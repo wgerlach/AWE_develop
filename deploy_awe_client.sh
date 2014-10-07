@@ -84,11 +84,11 @@ nohup /home/ubuntu/${AWE_BINARY} -debug 2 \
 
 else
 
-CLIENTNAME="docker"
+CLIENTGROUP="docker"
 
 if [ $1a == "dockertesta" ]
 then
-CLIENTNAME="dockertest"
+CLIENTGROUP="dockertest"
 fi
 
 # something like: docker cp /home/ubuntu/awe-config/awe-client.cfg awe-worker:/awe-config/
@@ -112,7 +112,7 @@ cd && \
 go install -v github.com/MG-RAST/AWE/... && \
 /home/gopath/bin/awe-client -debug 2 \
  -server_url=${SERVERURL} \
- -client_group=${CLIENTNAME} \
+ -client_group=${CLIENTGROUP} \
  -conf /awe-config/awe-client.cfg \
  -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
  2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
