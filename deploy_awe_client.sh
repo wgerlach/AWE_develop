@@ -16,8 +16,8 @@ export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
 # usage: deploy_awe_client.sh command clientgroup
 # usage: deploy_awe_client.sh run|stop clientgroup
 
-COMMAND = $1
-CLIENTGROUP = $2
+export COMMAND = $1
+export CLIENTGROUP = $2
 
 if [ "$#" -ne 2 ]; then
 echo "Illegal number of parameters"
@@ -40,7 +40,7 @@ fi
 
 
 
-if [ ${COMMAND} == "stop" ]
+if [[ ${COMMAND} == "stop" ]]
 then
 	killall -s TERM awe-client
 	killall -s TERM ${AWE_BINARY}
@@ -48,14 +48,14 @@ then
 	exit 0
 fi
 
-if [ ${COMMAND} != "run" ]
+if [[ ${COMMAND} != "run" ]]
 then
 	echo command ${COMMAND} unknown
 	exit 1
 fi
 
 
-if [ ${CLIENTGROUP} == "nodocker" ]
+if [[ ${CLIENTGROUP} == "nodocker" ]]
 then
 	echo no docker
 	killall -s TERM awe-client
@@ -94,7 +94,7 @@ mkdir -p /home/ubuntu/awe-config
 cd /home/ubuntu/awe-config
 rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
-if [ ${CLIENTGROUP} == "nodocker" ]
+if [[ ${CLIENTGROUP} == "nodocker" ]]
 then
 
 export PATH=/root/bin:/root/pipeline/awecmd:/root/pipeline/bin:$PATH
