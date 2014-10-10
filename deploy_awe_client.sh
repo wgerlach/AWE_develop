@@ -16,8 +16,8 @@ export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
 # usage: deploy_awe_client.sh command clientgroup
 # usage: deploy_awe_client.sh run|stop clientgroup
 
-export COMMAND = $1
-export CLIENTGROUP = $2
+export COMMAND=$1
+export CLIENTGROUP=$2
 
 if [ "$#" -ne 2 ]; then
 echo "Illegal number of parameters"
