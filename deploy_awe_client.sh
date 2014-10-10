@@ -13,6 +13,24 @@ export AWE_BINARY="awe-client-20141006-51dd4c1"
 export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
 
 
+# usage: deploy_awe_client.sh command clientgroup
+# usage: deploy_awe_client.sh run|stop clientgroup
+
+COMMAND = $1
+CLIENTGROUP = $2
+
+if [ "$#" -ne 2 ]; then
+echo "Illegal number of parameters"
+fi
+
+
+#if [ ${CLIENTGROUP}a == "a" ]
+#then
+#CLIENTGROUP="docker"
+#fi
+
+
+
 set -x
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
@@ -22,7 +40,7 @@ fi
 
 
 
-if [ $1a == "stopa" ]
+if [ ${COMMAND} == "stop" ]
 then
 	killall -s TERM awe-client
 	killall -s TERM ${AWE_BINARY}
@@ -30,7 +48,14 @@ then
 	exit 0
 fi
 
-if [ $1a == "nodockera" ]
+if [ ${COMMAND} != "run" ]
+then
+	echo command ${COMMAND} unknown
+	exit 1
+fi
+
+
+if [ ${CLIENTGROUP} == "nodocker" ]
 then
 	echo no docker
 	killall -s TERM awe-client
@@ -69,7 +94,7 @@ mkdir -p /home/ubuntu/awe-config
 cd /home/ubuntu/awe-config
 rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
-if [ $1a == "nodockera" ]
+if [ ${CLIENTGROUP} == "nodocker" ]
 then
 
 export PATH=/root/bin:/root/pipeline/awecmd:/root/pipeline/bin:$PATH
@@ -84,12 +109,7 @@ nohup /home/ubuntu/${AWE_BINARY} -debug 2 \
 
 else
 
-CLIENTGROUP="docker"
 
-if [ $1a == "dockertesta" ]
-then
-CLIENTGROUP="dockertest"
-fi
 
 # something like: docker cp /home/ubuntu/awe-config/awe-client.cfg awe-worker:/awe-config/
 $DOCKERBIN run -d -t -i --name awe-worker \
