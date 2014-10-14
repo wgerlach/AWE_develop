@@ -3,7 +3,7 @@
 
 
 
-export SERVERURL=http://10.1.12.14:8001
+export DEFAULT_SERVERURL=http://10.1.12.14:8001
 
 export DOCKERBIN=docker
 #export DOCKERBIN=docker.io
@@ -38,7 +38,10 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
 	exit
 fi
 
-
+if [[ ${SERVERURL}x == "x" ]]
+then
+export SERVERURL=DEFAULT_SERVERURL
+fi
 
 if [[ ${COMMAND} == "stop" ]]
 then
