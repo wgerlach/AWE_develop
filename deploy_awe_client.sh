@@ -40,7 +40,7 @@ fi
 
 if [[ ${SERVERURL}x == "x" ]]
 then
-export SERVERURL=DEFAULT_SERVERURL
+export SERVERURL=${DEFAULT_SERVERURL}
 fi
 
 if [[ ${COMMAND} == "stop" ]]
