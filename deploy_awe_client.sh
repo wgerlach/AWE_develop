@@ -12,6 +12,8 @@ export AWE_BINARY="awe-client-20141006-51dd4c1"
 
 export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
 
+export GIT_RESET="cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ;"
+export GIT_RESET=""
 
 # usage: deploy_awe_client.sh command clientgroup
 # usage: deploy_awe_client.sh run|stop clientgroup
@@ -128,7 +130,7 @@ rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
 git clone https://github.com/wgerlach/AWE.git && \
-cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
+${GIT_RESET}; \ ######################################### AWE COMMIT VERSION, comment if latest is needed.
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
