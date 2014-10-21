@@ -125,7 +125,7 @@ $DOCKERBIN run -d -t -i --name awe-worker \
 awe:20140615 \
 bash -c "\
 mkdir -p /awe/logs/ && \
-rm -f /awe/logs/* && \
+rm -f /mnt/data/awe/logs/* && \
 rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
