@@ -93,11 +93,11 @@ set -e
 rm -rf /mnt/data/awe/logs
 rm -rf /mnt/data/awe/work/*
 mkdir -p /mnt/data/awe/logs
-mkdir -p /home/ubuntu/awe-config
+#mkdir -p /home/ubuntu/awe-config
 
 
-cd /home/ubuntu/awe-config
-rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
+#cd /home/ubuntu/awe-config
+#rm -f awe-client.cfg ; wget https://raw.githubusercontent.com/wgerlach/AWE_develop/master/awe-client.cfg
 
 if [[ ${CLIENTGROUP} == "nodocker" ]]
 then
@@ -106,20 +106,20 @@ export PATH=/root/bin:/root/pipeline/awecmd:/root/pipeline/bin:$PATH
 export PERL5LIB=/root/pipeline/lib:/root/pipeline/conf:$PERL5LIB
 export PATH=/root/FragGeneScan/bin:$PATH
 
-nohup /home/ubuntu/${AWE_BINARY} -debug 2 \
- -server_url=${SERVERURL} \
- -client_group=nodocker \
- -conf /home/ubuntu/awe-config/awe-client.cfg \
+nohup /home/ubuntu/${AWE_BINARY} \
+ --debuglevel=2 \
+ --serverurl=${SERVERURL} \
+ --group=nodocker \
+ --supported_apps=\* \
+ --auto_clean_dir=false \
 2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log &
 
 else
 
 
 
-# something like: docker cp /home/ubuntu/awe-config/awe-client.cfg awe-worker:/awe-config/
 $DOCKERBIN run -d -t -i --name awe-worker \
  -v /var/run/docker.sock:/var/run/docker.sock \
- -v /home/ubuntu/awe-config/:/awe-config/ \
  -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
  -v /mnt/data/awe/:/mnt/data/awe/ \
 awe:20140615 \
@@ -135,11 +135,13 @@ git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
 go install -v github.com/MG-RAST/AWE/... && \
-/home/gopath/bin/awe-client -debug 2 \
- -server_url=${SERVERURL} \
- -client_group=${CLIENTGROUP} \
- -conf /awe-config/awe-client.cfg \
- -cgroup_memory_docker_dir=/cgroup_memory_docker/ \
+/home/gopath/bin/awe-client \
+ --debuglevel=2 \
+ --serverurl=${SERVERURL} \
+ --group=${CLIENTGROUP} \
+ --cgroup_memory_docker_dir=/cgroup_memory_docker/ \
+ --supported_apps=\* \
+ --auto_clean_dir=false \
  2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
 
 fi
