@@ -119,6 +119,7 @@ else
 
 
 $DOCKERBIN run -d -t -i --name awe-worker \
+ -v /usr/bin/docker:/usr/bin/docker \
  -v /var/run/docker.sock:/var/run/docker.sock \
  -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
  -v /mnt/data/awe/:/mnt/data/awe/ \
