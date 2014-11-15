@@ -8,12 +8,14 @@ export DEFAULT_SERVERURL=http://10.1.12.14:8001
 export DOCKERBIN=docker
 #export DOCKERBIN=docker.io
 #export AWE_BINARY="awe-client-20140926-dd4147757b"
-export AWE_BINARY="awe-client-20141006-51dd4c1"
+#export AWE_BINARY="awe-client-20141006-51dd4c1"
+export AWE_BINARY="awe-client-20141114-87bf44f"
 
-export AWE_COMMIT_NUMBER="3e4fbc4f58" # for docker
+
+export AWE_COMMIT_NUMBER="87bf44f" # for docker
 
 export GIT_RESET="cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ;"
-export GIT_RESET=""
+#export GIT_RESET=""
 
 # usage: deploy_awe_client.sh command clientgroup
 # usage: deploy_awe_client.sh run|stop clientgroup
