@@ -125,24 +125,29 @@ $DOCKERBIN run -d -t -i --name awe-worker \
  -v /var/run/docker.sock:/var/run/docker.sock \
  -v /sys/fs/cgroup/memory/docker/:/cgroup_memory_docker/ \
  -v /mnt/data/awe/:/mnt/data/awe/ \
+ --env="SERVERURL=$SERVERURL" \
+ --env="CLIENTGROUP=$CLIENTGROUP" \
 awe:20140615 \
 bash -c "\
+# cleanup
 mkdir -p /awe/logs/ && \
 rm -f /mnt/data/awe/logs/* && \
 rm -f /home/gopath/bin/awe-client && \
 cd /home/gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
-git clone https://github.com/wgerlach/AWE.git && \
+# get source code
+git clone https://github.com/wgerlach/AWE.git -b timeout && \
 ls ; ${GIT_RESET} \ 
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
 cd && \
+# compile
 go install -v github.com/MG-RAST/AWE/... && \
+# start AWE worker
 /home/gopath/bin/awe-client \
  --debuglevel=2 \
  --serverurl=${SERVERURL} \
  --group=${CLIENTGROUP} \
- --cgroup_memory_docker_dir=/cgroup_memory_docker/ \
  --supported_apps=\* \
  --auto_clean_dir=false \
  2> /mnt/data/awe/logs/stderr.log 1> /mnt/data/awe/logs/stdout.log"
