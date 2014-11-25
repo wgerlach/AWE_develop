@@ -47,6 +47,18 @@ then
 export SERVERURL=${DEFAULT_SERVERURL}
 fi
 
+
+if [[ ${AWEBRANCH}x == "x" ]]
+then
+export AWEBRANCH="develop"
+fi
+
+if [[ ${AWEREPO}x == "x" ]]
+then
+export AWEREPO="wgerlach"
+fi
+
+
 if [[ ${COMMAND} == "stop" ]]
 then
 	killall -s TERM awe-client
@@ -82,7 +94,7 @@ else
 	sleep 5
 
 	if ! [ -f awe.tgz ]; then
-	  curl "http://shock.metagenomics.anl.gov/node/a8560eb3-d1e7-4fc7-b01e-c7c8a2a544e0?download" > awe.tgz
+	  curl "http://shock.metagenomics.anl.gov/node/87f3ce92-4f4d-452b-ba57-9e9fc95eb002?download" > awe.tgz
 	fi
 	docker load -i awe.tgz
 
@@ -127,16 +139,18 @@ $DOCKERBIN run -d -t -i --name awe-worker \
  -v /mnt/data/awe/:/mnt/data/awe/ \
  --env="SERVERURL=$SERVERURL" \
  --env="CLIENTGROUP=$CLIENTGROUP" \
-awe:20140615 \
+ --env="AWEBRANCH=$AWEBRANCH" \
+ --env="AWEREPO=$AWEREPO" \
+skyport/awe:20141020 \
 bash -c "\
 # cleanup
 mkdir -p /awe/logs/ && \
 rm -f /mnt/data/awe/logs/* && \
-rm -f /home/gopath/bin/awe-client && \
-cd /home/gopath/src/github.com/MG-RAST/ && \
+rm -f /gopath/bin/awe-client && \
+cd /gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
 # get source code
-git clone https://github.com/wgerlach/AWE.git -b timeout && \
+git clone https://github.com/${AWEREPO}/AWE.git -b $AWEBRANCH && \
 ls ; ${GIT_RESET} \ 
 git clone https://github.com/MG-RAST/golib.git && \
 git clone https://github.com/MG-RAST/go-dockerclient.git && \
@@ -144,7 +158,7 @@ cd && \
 # compile
 go install -v github.com/MG-RAST/AWE/... && \
 # start AWE worker
-/home/gopath/bin/awe-client \
+/gopath/bin/awe-client \
  --debuglevel=2 \
  --serverurl=${SERVERURL} \
  --group=${CLIENTGROUP} \
