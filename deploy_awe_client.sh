@@ -14,7 +14,7 @@ export AWE_BINARY="awe-client-20141114-87bf44f"
 
 export AWE_COMMIT_NUMBER="87bf44f" # for docker
 
-export GIT_RESET="cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ;"
+#export GIT_RESET="cd AWE; git reset --hard ${AWE_COMMIT_NUMBER} ; cd .. ;"
 #export GIT_RESET=""
 
 # usage: deploy_awe_client.sh command clientgroup
