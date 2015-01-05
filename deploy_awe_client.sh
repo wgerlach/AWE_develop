@@ -97,7 +97,7 @@ else
 	  curl "http://shock.metagenomics.anl.gov/node/87f3ce92-4f4d-452b-ba57-9e9fc95eb002?download" > awe.tgz
 	fi
 	docker load -i awe.tgz
-
+	docker tag d0187a49bc33 skyport/awe:20141020
 	docker rm -f awe-worker ; echo removing old container
 
 fi
@@ -145,7 +145,7 @@ skyport/awe:20141020 \
 bash -c "\
 # cleanup
 mkdir -p /awe/logs/ && \
-rm -f /mnt/data/awe/logs/* && \
+rm -rf /mnt/data/awe/logs/* && \
 rm -f /gopath/bin/awe-client && \
 cd /gopath/src/github.com/MG-RAST/ && \
 rm -rf AWE golib go-dockerclient && \
