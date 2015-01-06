@@ -11,7 +11,9 @@ git clone https://github.com/MG-RAST/AWE.git -b master
 git clone https://github.com/MG-RAST/golib.git
 git clone https://github.com/MG-RAST/go-dockerclient.git
 
+#staticallly linked
+CGO_ENABLED=0 go install -a -ldflags '-s' -v github.com/MG-RAST/AWE/...
 
-go install -v github.com/MG-RAST/AWE/...
+# nomal version: go install -v github.com/MG-RAST/AWE/...
 
 
