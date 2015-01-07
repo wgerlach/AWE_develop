@@ -8,7 +8,10 @@
 # This container needs to be started with
 # "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock"
 # to allow this script to build a scratch AWE worker docker image.
-# You can modify git repo url if needed
+#
+# wget is required for scratch Dockerfile and nano may be need to change git repo url in here. 
+# apt-get install -y wget nano
+
 
 set -x
 set -e
