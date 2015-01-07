@@ -44,4 +44,6 @@ docker rmi skyport/awe-client:latest || true
 
 docker build -t skyport/awe-client:latest /scratch/
 
+echo Image ID: $(sudo docker inspect -f '{{ .Id}}' skyport/awe-client)
+
 cd ${REPODIR}
