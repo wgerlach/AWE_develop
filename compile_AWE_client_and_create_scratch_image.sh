@@ -26,8 +26,12 @@ git clone https://github.com/MG-RAST/AWE.git -b master
 git clone https://github.com/MG-RAST/golib.git
 git clone https://github.com/MG-RAST/go-dockerclient.git
 
+
+export GITHASH=$(git -C AWE rev-parse HEAD)
+echo GITHASH=${GITHASH}
+
 #staticallly linked, # this would remove debug symbols : -ldflags '-s'
-CGO_ENABLED=0 go install -a -v github.com/MG-RAST/AWE/...
+CGO_ENABLED=0 go install -a -v -ldflags '-X conf.GIT_COMMIT_HASH ${GITHASH}' github.com/MG-RAST/AWE/...
 
 # nomal version: go install -v github.com/MG-RAST/AWE/...
 
