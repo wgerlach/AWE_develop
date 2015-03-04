@@ -68,7 +68,7 @@ fi
 rm -f /scratch/awe-client/awe-client /scratch/awe-server/awe-server /scratch/awe-server/site.tar
 cp /gopath/bin/awe-client /scratch/awe-client/
 cp /gopath/bin/awe-server /scratch/awe-server/
-tar -cf /scratch/awe-server/site.tar -C ${REPODIR}/AWE/site/ ${REPODIR}/AWE/site/*
+tar -cf /scratch/awe-server/site.tar -C ${REPODIR}/AWE/site/ .
 
 
 
