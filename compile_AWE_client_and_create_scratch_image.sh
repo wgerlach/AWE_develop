@@ -58,15 +58,18 @@ cat << 'EOF' > /scratch/awe-server/Dockerfile
 # scratch awe server (mongodb is seperate)
 FROM scratch
 ADD ./awe-server /usr/local/bin/awe-server
+ADD ./site.tar /src/github.com/MG-RAST/AWE/site/
 CMD ["/usr/local/bin/awe-server"]
 EOF
 fi
 
 
 # copy binary into scratch build context
-rm -f /scratch/awe-client/awe-client /scratch/awe-server/awe-server
+rm -f /scratch/awe-client/awe-client /scratch/awe-server/awe-server /scratch/awe-server/site.tar
 cp /gopath/bin/awe-client /scratch/awe-client/
 cp /gopath/bin/awe-server /scratch/awe-server/
+tar -cf /scratch/awe-server/site.tar -C ${REPODIR}/AWE/site/ ${REPODIR}/AWE/site/*
+
 
 
 DATE=`date +"%Y%m%d.%H%M"`
