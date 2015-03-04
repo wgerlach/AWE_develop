@@ -56,6 +56,7 @@ mkdir -p /scratch/awe-server/
 if [ ! -f /scratch/awe-server/Dockerfile ]; then
 cat << 'EOF' > /scratch/awe-server/Dockerfile 
 # scratch awe server (mongodb is seperate)
+FROM scratch
 ADD ./awe-server /usr/local/bin/awe-server
 CMD ["/usr/local/bin/awe-server"]
 EOF
