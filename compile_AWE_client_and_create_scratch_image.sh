@@ -21,12 +21,15 @@ REPODIR=/gopath/src/github.com/MG-RAST/
 cd ${REPODIR}
 
 #rm -rf AWE golib go-dockerclient
-#git clone https://github.com/MG-RAST/AWE.git -b master
+#git clone --recursive https://github.com/MG-RAST/AWE.git -b master
+###git submodule update --init --recursive
 #git clone https://github.com/MG-RAST/golib.git
 #git clone https://github.com/MG-RAST/go-dockerclient.git
 
-
-
+if [ ! "$(ls -A ${REPODIR}/AWE/site/Retina)" ] ; then
+	echo "Please check out Retina submodule"
+	exit 1
+fi
 
 export GITHASH=$(git -C AWE rev-parse HEAD)
 echo GITHASH=${GITHASH}
