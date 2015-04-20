@@ -37,3 +37,10 @@ Then run this script to statically compile AWE and create AWE worker and AWE ser
 cd /
 ./compile_AWE_client_and_create_scratch_image.sh
 ```
+
+...and we get nice small images:
+```text
+REPOSITORY                   TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+skyport/awe-server-minimal   20150420.1601       7be1891365c8        7 seconds ago       13.03 MB
+skyport/awe-client-minimal   20150420.1601       d72df1158340        14 seconds ago      10.31 MB
+```
