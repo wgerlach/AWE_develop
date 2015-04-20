@@ -2,16 +2,7 @@
 
 # This script compiles AWE (statically) and creates a docker scratch image
 #
-# Execution environment for this script is a default AWE worker (client) container, e.g.:
-# > docker build -t skyport/awe-factory:latest https://raw.githubusercontent.com/MG-RAST/Skyport/master/dockerfiles/awe-client/Dockerfile
-#
-# This container needs to be started with
-# "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock"
-# to allow this script to build a scratch AWE worker docker image:
-# docker run -t -i --name awe-factory skyport/awe-factory:latest ...
-#
-# wget is required for scratch Dockerfile and nano may be need to change git repo url in here. 
-# apt-get install -y wget nano
+
 
 set -x
 set -e
@@ -30,6 +21,11 @@ if [ ! "$(ls -A ${REPODIR}/AWE/site/Retina)" ] ; then
 	echo "Please check out Retina submodule"
 	exit 1
 fi
+
+
+rm -f /gopath/bin/awe-client
+rm -f /gopath/bin/awe-server
+
 
 export GITHASH=$(git -C AWE rev-parse HEAD)
 echo GITHASH=${GITHASH}
