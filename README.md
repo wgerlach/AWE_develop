@@ -1,6 +1,8 @@
 
 
-### Statically compile AWE and create minimal docker images of AWE worker and server
+### Statically compile AWE (and optionally create minimal docker images of AWE worker and server)
+
+These instructions show how to use a normal AWE Docker image as factory environment to statically compile the AWE binaries and 
 
 Execution environment for this script is a default AWE worker (client) container, e.g.:
 ```bash
@@ -11,6 +13,11 @@ This container needs to be started with socker socket mounted to allow this scri
 ```bash
 docker run -t -i -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock --name awe-factory skyport/awe-factory:latest
 ```
+Alternatively, if you only want the binaries and need no docker image, mount the /gopath/bin/ directory:
+```bash
+docker run -t -i -v ~/awe_binaries/:/gopath/bin/ --name awe-factory skyport/awe-factory:latest
+```
+
 
 Download script to compile statically
 ```bash
@@ -27,7 +34,7 @@ git clone https://github.com/MG-RAST/golib.git -b master
 git clone https://github.com/MG-RAST/go-dockerclient.git -b master
 ```
 
-The first time you compile, you may need to get the depndencies first:
+The first time you compile, you may need to get the dependencies first:
 ```bash
 go get github.com/MG-RAST/AWE/...
 ```
@@ -38,7 +45,7 @@ cd /
 ./compile_AWE_client_and_create_scratch_image.sh
 ```
 
-...and we get nice small images:
+If you mounted the docker binary into your factory container, you should get nice small images:
 ```text
 REPOSITORY                   TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 skyport/awe-server-minimal   20150420.1601       7be1891365c8        7 seconds ago       13.03 MB
