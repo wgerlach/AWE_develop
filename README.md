@@ -6,7 +6,7 @@ These instructions show how to use a normal AWE Docker image as factory environm
 
 Execution environment for this script is a default AWE worker (client) container, e.g.:
 ```bash
-docker build -t skyport/awe-factory:latest https://raw.githubusercontent.com/MG-RAST/Skyport/master/dockerfiles/awe-client/Dockerfile
+docker build -t skyport/awe-factory:latest https://raw.githubusercontent.com/MG-RAST/AWE/develop/dockerfiles/awe/Dockerfile
 ```
 
 This container needs to be started with socker socket mounted to allow this script to build a scratch AWE worker docker image:
