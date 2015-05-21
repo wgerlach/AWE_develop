@@ -34,8 +34,10 @@ echo GITHASH=${GITHASH}
 CGO_ENABLED=0 go install -a -installsuffix cgo -v -ldflags "-X github.com/MG-RAST/AWE/lib/conf.GIT_COMMIT_HASH ${GITHASH}" github.com/MG-RAST/AWE/...
 
 # nomal version: go install -v github.com/MG-RAST/AWE/...
-
-
+if [ ! -e /usr/bin/docker ] ; then
+  echo "/usr/bin/docker not found, skipping..."
+  exit 0
+fi
 
 # this creates the scratch Dockerfiles
 
@@ -73,10 +75,11 @@ tar -cf /scratch/awe-server/site.tar -C ${REPODIR}/AWE/site/ .
 
 DATE=`date +"%Y%m%d.%H%M"`
 
-docker rmi skyport/awe-client:latest skyport/awe-server:latest || true
 
-docker build -t skyport/awe-client-minimal:${DATE} /scratch/awe-client/
-docker build -t skyport/awe-server-minimal:${DATE} /scratch/awe-server/
+/usr/bin/docker rmi skyport/awe-client:latest skyport/awe-server:latest || true
+
+/usr/bin/docker build -t skyport/awe-client-minimal:${DATE} /scratch/awe-client/
+/usr/bin/docker build -t skyport/awe-server-minimal:${DATE} /scratch/awe-server/
 
 
 
